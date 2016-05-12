@@ -20,6 +20,8 @@ serialInclude([
 	'MyPipe.js',
 	'MyInterface.js',
 	'MySCircle.js',
+	'MyCapsule.js',
+	'MySemiSphere.js',
 	
 
 	main=function() {

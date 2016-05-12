@@ -82,12 +82,10 @@ MyDrone.prototype.update = function (currtime) {
 		this.ptime = currtime;
 	}
 	var dtime = currtime - this.ptime;
-	this.body.update(dtime);
 	this.yvel = this.uvel;
 	this.y += this.yvel * (dtime)/1000;
 	//this.zang = -this.xvel * 2 * degToRad;
 	this.xang = this.fvel * 2 * degToRad;
-	
 	this.yang += this.rshift * (dtime)/1000 * degToRad;
 	this.xvel = this.fvel * Math.cos(this.yang-90*degToRad);
 	this.zvel = -this.fvel * Math.sin(this.yang-90*degToRad);
@@ -95,5 +93,12 @@ MyDrone.prototype.update = function (currtime) {
 	this.z += this.zvel * (dtime)/1000;
 	
 	this.ptime = currtime;
+	if (this.fvel>0) {
+		this.body.update(dtime,1);
+	} else if (this.fvel<0) {
+		this.body.update(dtime,2);
+	} else {
+		this.body.update(dtime,0);
+	}
 };
 
